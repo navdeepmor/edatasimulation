@@ -53,11 +53,11 @@ const Navbar = ({toggle}) => {
                             <NavLinks scrollNav={scrollNav} to='services' smooth={true} duration={500} spy={true} exact='true' offset={-80}> Services </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks scrollNav={scrollNav} to='signup' smooth={true} duration={500} spy={true} exact='true' offset={-80}> Sign Up </NavLinks>
+                            <NavLinks scrollNav={scrollNav} to='signup' smooth={true} duration={500} spy={true} exact='true' offset={-80}> Career </NavLinks>
                         </NavItem>
                     </NavMenu>
                     <NavBtn>
-                        <NavBtnLink to='/signin' smooth={true} duration={500} spy={true} exact='true' offset={-80}> Sign In </NavBtnLink>
+                        <NavBtnLink to='/contactus' smooth={true} duration={500} spy={true} exact='true' offset={-80}> Contact Us </NavBtnLink>
                     </NavBtn>
                 </NavbarContainer>
             </Nav>

@@ -9,11 +9,11 @@
     background: #010606;
 
     @media screen and (max-width: 760px) {
-        height: 1100px;
+        height: 1300px;
     }
 
     @media screen and (max-width: 480px) {
-        height: 1300px;
+        height: 2400px;
     }
  `
 
@@ -21,16 +21,16 @@
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     grid-gap: 16px;
     padding: 0 15px;
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 760px) {
         grid-template-columns: 1fr 1fr;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 480px) {
         grid-template-columns: 1fr;
         paddings: 0 20px;
     }

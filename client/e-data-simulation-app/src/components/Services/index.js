@@ -13,24 +13,45 @@ import {
 } from './ServicesElements'
 
 const Services = () => {
+
+    
+
     return (
         <ServicesContainer id='services'>
             <ServicesH1> Our Services </ServicesH1>
             <ServicesWrapper>
                 <ServicesCard>
                     <ServicesIcon src={Icon1} />
-                    <ServicesH2> Reduce expenses </ServicesH2>
-                    <ServicesP> We help reduce you with our all in advance tools. </ServicesP>
+                    <ServicesH2> EV </ServicesH2>
                 </ServicesCard>
                 <ServicesCard>
                     <ServicesIcon src={Icon2} />
-                    <ServicesH2> Virtual platform </ServicesH2>
-                    <ServicesP> We can access out platform anywhere in the world. </ServicesP>
+                    <ServicesH2> CAD </ServicesH2>
                 </ServicesCard>
                 <ServicesCard>
                     <ServicesIcon src={Icon3} />
-                    <ServicesH2> Premium Benefits </ServicesH2>
-                    <ServicesP> Unlock our special membership for unlimited consultancy. </ServicesP>
+                    <ServicesH2> STRENGTH/DURABILITY </ServicesH2>
+                </ServicesCard>
+                <ServicesCard>
+                    <ServicesIcon src={Icon3} />
+                    <ServicesH2> THERMAL </ServicesH2>
+                </ServicesCard>
+                <ServicesCard>
+                    <ServicesIcon src={Icon3} />
+                    <ServicesH2> CFD </ServicesH2>
+                </ServicesCard>
+                <ServicesCard>
+                    <ServicesIcon src={Icon3} />
+                    <ServicesH2> NVH </ServicesH2>
+                </ServicesCard>
+                <ServicesCard>
+                    <ServicesIcon src={Icon3} />
+                    <ServicesH2> CRASH </ServicesH2>
+                </ServicesCard>
+                <ServicesCard>
+                    <ServicesIcon src={Icon3} />
+                    <ServicesH2> MBD </ServicesH2>
+                    {/* <ServicesP> Unlock our special membership for unlimited consultancy. </ServicesP> */}
                 </ServicesCard>
             </ServicesWrapper>
         </ServicesContainer>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button } from '../ButtonElements'
+import React, {useState} from 'react'
+import axios from 'axios'
 import {
     Container,
     FormWrap,
@@ -11,84 +11,48 @@ import {
     FormInput,
     TextArea,
     FormButton,
-    Text
+    // Text
 } from './ContactUsElements'
-import {
-    InfoContainer,
-    InfoWrapper,
-    InfoRow,
-    Column1,
-    Column2,
-    TextWrapper, 
-    TopLine,
-    Heading,
-    Subtitle,
-    BtnWrap,
-    ImgWrap,
-    Img
-} from '../InfoSection/InfoElements'
 
-const ContactUs = ({
-        lightBg, 
-        id, 
-        imgStart, 
-        topLine,
-        lightText, 
-        headline, 
-        darkText, 
-        description, 
-        buttonLabel, 
-        img, 
-        alt, 
-        primary,
-        dark,
-        dark2
-    }) => {
+const SignIn = () => {
+
+    const [fname, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [msg, setMsg] = useState('');
+    // const [error, setError] = useState('');
+
+    const handleSendEmail = async (e) => {
+        try {
+            let resp = await axios.post('http://localhost:3000/', {fname, email, msg }); 
+            console.log('resp ', resp);
+        } catch(err) {
+            // error handling
+        }
+        e.preventDefault();
+    }
+
     return (
         <>
-            <InfoContainer lightBg={lightBg} id={id}>
-                <InfoWrapper>
-                    <InfoRow imgStart={imgStart}>
-                        <Column1>
-                            <TextWrapper>
-                                <TopLine> {topLine} </TopLine>
-                                <Heading lightText={lightText}> {headline} </Heading>
-                                <Subtitle darkText={darkText}> {description} </Subtitle>
-                                <BtnWrap>
-                                    <Button to='hone' 
-                                    smooth={true} 
-                                    duration={500}
-                                    spy={true}
-                                    exact={true}
-                                    offset={-80}
-                                    primary={primary ? 1 : 0}
-                                    dark={dark ? 1 : 0}
-                                    dark2={dark2 ? 1 : 0}> {buttonLabel} </Button> 
-                                </BtnWrap>
-                            </TextWrapper>
-                        </Column1>
-                        <Column2>
-                            <FormWrap>
-                                <FormContent>
-                                    <Form action='#'>
-                                        <FormH1> Contact Us </FormH1>
-                                        <FormLabel htmlFor='for'> User Name </FormLabel>
-                                        <FormInput type='text' required />
-                                        <FormLabel htmlFor='for'> Email </FormLabel>
-                                        <FormInput type='email' required />
-                                        <FormLabel htmlFor='for'> Message </FormLabel>
-                                        <TextArea />
-                                        <FormButton type='submit'> Continue </FormButton>
-                                        <Text> Forget password </Text>
-                                    </Form>
-                                </FormContent>
-                            </FormWrap>
-                        </Column2>
-                    </InfoRow>
-                </InfoWrapper>
-            </InfoContainer>
+        {/* <h1> You looking Signin inside Signin component </h1> */}
+        <Container>
+            <FormWrap>
+                <Icon to='/'> e-data </Icon>
+                <FormContent>
+                    <Form action='#'>
+                        <FormH1> Contact Us </FormH1>
+                        <FormLabel htmlFor='for'> Full Name </FormLabel>
+                        <FormInput type='text' required value={fname} onChange={(e) => setName(e.target.value)}/>
+                        <FormLabel htmlFor='for'> Email </FormLabel>
+                        <FormInput type='email' required value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <FormLabel htmlFor='for'> Message </FormLabel>
+                        <TextArea value={msg} onChange={(e) => setMsg(e.target.value)}/>
+                        <FormButton type='click' onClick={handleSendEmail}> Submit </FormButton>
+                    </Form>
+                </FormContent>
+            </FormWrap>
+        </Container>
         </>
     )
 }
 
-export default ContactUs;
+export default SignIn;
