@@ -110,3 +110,8 @@ export const Text = styled.span`
     color: #fff;
     font-size: 14px;
 `
+
+export const MsgSentCont = styled.div`
+    display: flex;
+    align-items: center;
+` 

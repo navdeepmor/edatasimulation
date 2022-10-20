@@ -15,10 +15,6 @@ app.use(cors());
 //     res.sendFile(path.join(__dirname, '../client/e-data-simulation-app/public/index.html'));
 // });
 
-app.get('/', function(req, res) {
-    res.send("GET request received");
-});
-
 app.post('/', function(req, res) {
     const sendMail = async () => {
         let transporter = nodemailer.createTransport({
@@ -32,13 +28,13 @@ app.post('/', function(req, res) {
         const info = await transporter.sendMail({
             from: req.body.email,
             to: "navdeepmor.me@gmail.com",
-            subject: `Website Contact Us`,
+            subject: `Contact Us ${req.body.email}`,
             text: req.body.msg,
-            html: `<h2> client details </h2>`
-                //    <b> ${req.body.fname} </b> 
-                //    <b> ${req.body.contactNum} </b> 
-                //    <b> ${req.body.email} </b> 
-                //    <b> ${req.body.msg} </b>`
+            html: `<h2> client details </h2> <br/>
+                   Name : <b> ${req.body.fname} </b> <br/> 
+                   Contact No. : <b> ${req.body.contactNum} </b> <br/>
+                   Email : <b> ${req.body.email} </b> <br/> 
+                   Message : <b> ${req.body.msg} </b>`
         });
 
         console.log("Message send : %s", info.messageId);
@@ -47,7 +43,7 @@ app.post('/', function(req, res) {
     
     try {
         sendMail();
-        res.send('Message send successfully !!');
+        res.send('Sent');
     } catch {
         console.error();
     }
