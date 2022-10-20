@@ -17,13 +17,14 @@ import {
 const SignIn = () => {
 
     const [fname, setName] = useState('');
+    const [contactNum, setContactNum] = useState('');
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('');
     // const [error, setError] = useState('');
 
     const handleSendEmail = async (e) => {
         try {
-            let resp = await axios.post('http://localhost:3000/', {fname, email, msg }); 
+            let resp = await axios.post('http://localhost:3000/', {fname, contactNum, email, msg }); 
             console.log('resp ', resp);
         } catch(err) {
             // error handling
@@ -42,6 +43,8 @@ const SignIn = () => {
                         <FormH1> Contact Us </FormH1>
                         <FormLabel htmlFor='for'> Full Name </FormLabel>
                         <FormInput type='text' required value={fname} onChange={(e) => setName(e.target.value)}/>
+                        <FormLabel htmlFor='for'> Contact No. </FormLabel>
+                        <FormInput type='text' required value={contactNum} onChange={(e) => setContactNum(e.target.value)}/>
                         <FormLabel htmlFor='for'> Email </FormLabel>
                         <FormInput type='email' required value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <FormLabel htmlFor='for'> Message </FormLabel>
