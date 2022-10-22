@@ -113,5 +113,11 @@ export const Text = styled.span`
 
 export const MsgSentCont = styled.div`
     display: flex;
-    align-items: center;
+    justify-content: center;
+    margin-top: 30vh;
+    height: 30vh;
+
+    @media screen and (max-width: 480px) {
+        height: 15vh;
+    }
 ` 

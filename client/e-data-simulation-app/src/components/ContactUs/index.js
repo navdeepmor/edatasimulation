@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import emailSentImgSrc from '../assets/images/email-sent-1.svg';
 import {
     MsgSentCont,
     Container,
@@ -21,15 +22,22 @@ const SignIn = () => {
     const [contactNum, setContactNum] = useState('');
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('');
-    const [btnDisable, setBtnDisable] = useState(true);
     const [msgSend, setMsgSend] = useState(false);
+
+    const [isfNameValid, setIsfNameValid] = useState(false);
+    const [isContactNumValid, setIsContactNumValid] = useState(false);
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isValidForm, setIsValidForm] = useState(false);
     // const [error, setError] = useState('');
 
-    const handleSendEmail = async (e) => {
-        if(fname !== '' && contactNum !== '' && email !== '') {
-            setBtnDisable(false);
-        }
+    const handleName = (txt) => {
+        if(fname !== '') {
+            setName(txt);
+            setIsfNameValid(true);
+        } else 
+    }
 
+    const handleSendEmail = async (e) => {
         try {
             let resp = await axios.post('http://localhost:3000/', {fname, contactNum, email, msg }); 
             console.log(resp);
@@ -44,9 +52,8 @@ const SignIn = () => {
 
     return (
         <>
-        {/* <h1> You looking Signin inside Signin component </h1> */}
         {
-            msgSend ? (<MsgSentCont> Msg Sent </MsgSentCont>) :
+            msgSend ? (<MsgSentCont> <img src={emailSentImgSrc} alt='Message have been sent.' /> </MsgSentCont>) :
             (<Container>
                 <FormWrap>
                     <Icon to='/'> e-data </Icon>
@@ -54,14 +61,14 @@ const SignIn = () => {
                         <Form action='#'>
                             <FormH1> Contact Us </FormH1>
                             <FormLabel htmlFor='for'> Full Name </FormLabel>
-                            <FormInput type='text' required value={fname} onChange={(e) => setName(e.target.value)}/>
+                            <FormInput type='text' required value={fname} onChange={(e) => handleName(e.target.value)}/>
                             <FormLabel htmlFor='for'> Contact No. </FormLabel>
-                            <FormInput type='text' required value={contactNum} onChange={(e) => setContactNum(e.target.value)}/>
+                            <FormInput type='text' required value={contactNum} onChange={(e) => handleContactNum(e.target.value)}/>
                             <FormLabel htmlFor='for'> Email </FormLabel>
-                            <FormInput type='email' required value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <FormInput type='email' required value={email} onChange={(e) => handleEmail(e.target.value)}/>
                             <FormLabel htmlFor='for'> Message </FormLabel>
                             <TextArea value={msg} onChange={(e) => setMsg(e.target.value)}/>
-                            <FormButton disabled={!btnDisable} type='click' onClick={handleSendEmail}> Submit </FormButton>
+                            <FormButton disabled={IsValidForm} type='click' onClick={(e) => handleSendEmail(e)}> Submit </FormButton>
                         </Form>
                     </FormContent>
                 </FormWrap>
