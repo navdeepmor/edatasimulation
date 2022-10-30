@@ -23,19 +23,7 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('');
     const [msgSend, setMsgSend] = useState(false);
-
-    const [isfNameValid, setIsfNameValid] = useState(false);
-    const [isContactNumValid, setIsContactNumValid] = useState(false);
-    const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isValidForm, setIsValidForm] = useState(false);
     // const [error, setError] = useState('');
-
-    const handleName = (txt) => {
-        if(fname !== '') {
-            setName(txt);
-            setIsfNameValid(true);
-        } else 
-    }
 
     const handleSendEmail = async (e) => {
         try {
@@ -61,14 +49,14 @@ const SignIn = () => {
                         <Form action='#'>
                             <FormH1> Contact Us </FormH1>
                             <FormLabel htmlFor='for'> Full Name </FormLabel>
-                            <FormInput type='text' required value={fname} onChange={(e) => handleName(e.target.value)}/>
+                            <FormInput type='text' required value={fname} onChange={(e) => setName(e.target.value)}/>
                             <FormLabel htmlFor='for'> Contact No. </FormLabel>
-                            <FormInput type='text' required value={contactNum} onChange={(e) => handleContactNum(e.target.value)}/>
+                            <FormInput type='text' required value={contactNum} onChange={(e) => setContactNum(e.target.value)}/>
                             <FormLabel htmlFor='for'> Email </FormLabel>
-                            <FormInput type='email' required value={email} onChange={(e) => handleEmail(e.target.value)}/>
+                            <FormInput type='email' required value={email} onChange={(e) => setEmail(e.target.value)}/>
                             <FormLabel htmlFor='for'> Message </FormLabel>
                             <TextArea value={msg} onChange={(e) => setMsg(e.target.value)}/>
-                            <FormButton disabled={IsValidForm} type='click' onClick={(e) => handleSendEmail(e)}> Submit </FormButton>
+                            <FormButton type='click' onClick={(e) => handleSendEmail(e)}> Submit </FormButton>
                         </Form>
                     </FormContent>
                 </FormWrap>
