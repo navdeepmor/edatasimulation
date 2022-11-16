@@ -27,7 +27,7 @@ const SignIn = () => {
 
     const handleSendEmail = async (e) => {
         try {
-            let resp = await axios.post('http://localhost:3000/', {fname, contactNum, email, msg }); 
+            let resp = await axios.post('http://localhost:8000/', {fname, contactNum, email, msg}); 
             console.log(resp);
             if(resp.status === 200) {
                 setMsgSend(true);

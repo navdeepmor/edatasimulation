@@ -1,8 +1,4 @@
 import React, { useState } from 'react'
-// import { FaMdb } from 'react-icons/fa';
-import Icon1 from '../../components/assets/images/analysis.svg';
-import Icon2 from '../../components/assets/images/drone_surveillance.svg';
-import Icon3 from '../../components/assets/images/predictive_analytics.svg';
 import { 
     ServicesContainer,
     ServicesH1,
@@ -20,44 +16,22 @@ const Services = () => {
     const [idx, setIdx] = useState(1);
     const [leftIdx, setLeftIdx] = useState(0);
     const [rightIdx, setRightIdx] = useState(2);
+    const [services, setServices] = useState({});
+
+    useEffect(() => {
+        getServices();
+    }, [])
 
     const mod = (n, m) => {
         let res = n % m;
         return res >= 0 ? res : res + m;
     }
 
-    const services = [
-        {
-            idx : 0, 
-            icon : Icon1,
-            head : 'CRASH',
-            desc : 'We let you know the depth & figure involed in crash.'
-        }, 
-        {
-            idx : 1,
-            icon : Icon2,
-            head : 'CFD',
-            desc : 'Our CFD is know in industry with unique methods which we adopte.'
-        },
-        {
-            idx : 2,
-            icon : Icon3,
-            head : 'MBD',
-            desc : 'Check our client speaks about our expertise in MBD.'
-        },
-        {
-            idx : 3,
-            icon : Icon3,
-            head : 'Service-4',
-            desc : 'Click on it to know more about our service 4.'
-        },
-        {
-            idx : 4,
-            icon : Icon3,
-            head : 'Service-5',
-            desc : 'Click on it to know more about our service 5.'
-        }
-    ]
+    const getServices = async () => {
+        let _services = await axios.get('http://localhost:8000/service-info/all-service');
+        setServices([..._services.data]);
+        console.log(_services.data);
+    }
 
     const handleLeft = () => {
         console.log(leftIdx + " " + idx + " " + rightIdx);
