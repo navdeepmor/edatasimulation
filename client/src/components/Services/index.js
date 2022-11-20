@@ -1,80 +1,46 @@
-import React, { useState } from 'react'
-import { 
-    ServicesContainer,
-    ServicesH1,
-    SliderButton,
-    SliderContainer,
-    ServicesWrapper,
-    ServicesCard,
-    ServicesIcon,
-    ServicesH2,
-    ServicesP
-} from './ServicesElements'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { CircularProgress } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 const Services = () => {
+  const services = useSelector((state) => state.services);
 
-    const [idx, setIdx] = useState(1);
-    const [leftIdx, setLeftIdx] = useState(0);
-    const [rightIdx, setRightIdx] = useState(2);
-    const [services, setServices] = useState({});
+  console.log(services);
 
-    useEffect(() => {
-        getServices();
-    }, [])
-
-    const mod = (n, m) => {
-        let res = n % m;
-        return res >= 0 ? res : res + m;
-    }
-
-    const getServices = async () => {
-        let _services = await axios.get('http://localhost:8000/service-info/all-service');
-        setServices([..._services.data]);
-        console.log(_services.data);
-    }
-
-    const handleLeft = () => {
-        console.log(leftIdx + " " + idx + " " + rightIdx);
-
-        setIdx(mod(idx - 1, services.length));
-        setLeftIdx(mod(leftIdx - 1, services.length));
-        setRightIdx(mod(rightIdx - 1, services.length));
-    }
-
-    const handleRight = () => {
-        console.log(leftIdx + " " + idx + " " + rightIdx);
-
-        setIdx(mod(idx + 1, services.length));
-        setLeftIdx(mod(leftIdx + 1, services.length));
-        setRightIdx(mod(rightIdx + 1, services.length));
-    }
-
-    return (
-        <ServicesContainer id='services'>
-            <ServicesH1> Our Services </ServicesH1>
-            <SliderContainer>
-                <SliderButton onClick={() => handleLeft()}> left </SliderButton>
-                <ServicesWrapper>
-                    <ServicesCard>
-                        <ServicesIcon src={ services[leftIdx].icon } />
-                        <ServicesH2> { services[leftIdx].head } </ServicesH2>
-                        <ServicesP> { services[leftIdx].desc } </ServicesP>
-                    </ServicesCard>
-                    <ServicesCard>
-                        <ServicesIcon src={ services[idx].icon } />
-                        <ServicesH2> { services[idx].head } </ServicesH2>
-                        <ServicesP> { services[idx].desc } </ServicesP>
-                    </ServicesCard>
-                    <ServicesCard>
-                        <ServicesIcon src={ services[rightIdx].icon } />
-                        <ServicesH2> { services[rightIdx].head } </ServicesH2>
-                        <ServicesP> { services[rightIdx].desc } </ServicesP>
-                    </ServicesCard>
-                </ServicesWrapper>
-                <SliderButton onClick={() => handleRight()}> right </SliderButton>
-            </ SliderContainer>
-        </ServicesContainer>
-    )
+  return (
+      !services.length ? <CircularProgress color="inherit" /> : (
+          <div>
+              {services.map((service) => (
+                  <Card key={service.name} sx={{ maxWidth: 345 }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={service.image}
+                      alt="IMAGE HERE"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {service.name}
+                      </Typography>
+                      {/* <Typography gutterBottom variant="h3" component="div">
+                        {service.heading}
+                      </Typography> */}
+                      <Typography variant="body2" color="text.secondary">
+                        {service.desciption}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+          </div>
+      )
+  );
 }
 
-export default Services
+export default Services;

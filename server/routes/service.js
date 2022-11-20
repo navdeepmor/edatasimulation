@@ -1,10 +1,10 @@
 const express = require('express')
-const {getService, getAllService, signupService} = require('../controllers/serviceController')  // controller fns
+const { addService, getService, getAllService } = require('../controllers/serviceController')  // controller fns
 
 const serviceRouter = express.Router()
 
 serviceRouter
-    .route('/all-service')
+    .route('/')
     .get(getAllService)
     // .post(postService)
     // .patch(updateService)
@@ -12,10 +12,11 @@ serviceRouter
 
 serviceRouter
     .route('/')
-    .get(getService)
+    .post(addService)
 
 serviceRouter
-    .route('/signup')
-    .post(signupService)
+    .route('/find-service')
+    .get(getService)
+
 
 module.exports = serviceRouter

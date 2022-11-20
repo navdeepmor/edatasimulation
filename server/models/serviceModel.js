@@ -9,10 +9,9 @@ const serviceSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image: String,
     description: {
-        type: String,
-        required: true,
-        minLength: 10
+        type: String
     }
 })
 

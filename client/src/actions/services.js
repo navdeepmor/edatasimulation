@@ -1,13 +1,20 @@
-import * as api from '../api'
+import * as api from '../api';
 
 // action creators
-const getAllServiceInfo = () => async (dispatch) => {
+export const getAllService = () => async (dispatch) => {
     try {
-        const {data} = await api.fetchAllServiceInfo();
-    } catch(error) {
-
+        const { data } = await api.fetchServices();
+        dispatch({ type: 'FETCH_ALL', payload: data });
+    } catch(err) {
+        console.log(err.message);
     }
+} 
 
-    const action = { type: 'FETCH_ALL',  payload: [] }
-    dispatch(action); 
+export const createService = (service) => async (dispatch) => {
+    try {
+        const { data } = await api.createService(service);
+        dispatch({ type: 'CREATE', payload: data });
+    } catch(err) {
+        console.log(err);
+    }
 }

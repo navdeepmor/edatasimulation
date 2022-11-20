@@ -1,5 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const url = 'http://localhost:8000/service-info/';
+const url = 'http://localhost:8000/services';
 
-export const fetchAllServiceInfo = () => axios.get(url);
+export const fetchServices = () => axios.get(url);
+export const createService = (newService) => axios.post(url, newService);

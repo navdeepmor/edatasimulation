@@ -1,12 +1,12 @@
-export default () => {
+export default (services = [], action) => {
     switch(action.type) {
-        case "FETCH_ALL":
-            return services;
-        case "FETCH_ONE":
-            return services;
-        case "CREATE":
+        case 'CREATE':
+            return [...services, action.payload];
+        case 'FETCH_ALL':
+            return action.payload;
+        case 'FIND':
             return services;
         default:
-            return services;
+            return services; 
     }
 }

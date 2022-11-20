@@ -1,34 +1,38 @@
 const Service = require('../models/serviceModel')
 
-// fetchs all service details from DB
-async function getAllService(req, res) {
-    let allServiceInfo = await Service.find();
-    if(allServiceInfo) {
-        res.json(allServiceInfo)
-    } else {
-        res.json({
-            'msg': `SERVICES INFO DON'T EXIST INSIDE DB` 
-        })
+// create service with given details
+async function addService(req, res) {
+    const newService = new Service(req.body)
+    try {
+        await newService.save()
+        res.status(201).json(newService)
+    } catch(err) {
+        res.status(409).json({
+            'msg': err.message
+        }) 
     }
 }
 // fetchs the given service details from DB
 async function getService(req, res) {
-    let serviceInfo = await Service.findOne({"name" : req.query.service});
-    if(serviceInfo) {
-        res.json(serviceInfo)
-    } else {
-        res.json({
-            'msg': `SERVICES INFO DON'T EXIST INSIDE DB` 
+    try {
+        let serviceInfo = await Service.findOne({"name" : req.query.service})
+        res.status(200).json(serviceInfo)
+    } catch(err) {
+        res.status(404).json({
+            'msg': err.message
         })
+    } 
+}
+// fetchs all service details from DB
+async function getAllService(req, res) {
+    try {
+        let allServiceInfo = await Service.find();
+        res.status(200).json(allServiceInfo)
+    } catch(err) {
+        res.status(404).json({
+            'msg': err.message
+        })  
     }
 }
-// signup service
-const signupService = async (req, res) => {
-    const newService = new Service(req.body);
 
-    newService.save()
-        .then(() => res.json(`Service saved in DB successfuly ${req.body.name}`))
-        .catch(err => res.status(400).json('Error: ' + err))
-}
-
-module.exports = {getService, getAllService, signupService}
+module.exports = {addService, getService, getAllService}
