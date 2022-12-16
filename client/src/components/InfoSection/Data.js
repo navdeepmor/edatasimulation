@@ -21,7 +21,7 @@ export const homeObjTwo = {
     lightText: false,
     lightTextDesc: false,
     topLine: 'Indepth Analysis',
-    headline: 'We look beyond CFD',
+    headline: 'We look beyond CFD + FEA and Design simulation to Automobile, manufacturing and heavy engineering industries',
     description: 'At each stage  and with each parameter our expert  verify that the results represent the physics correctly. Our team look at the Phyics, Chemical kintatics and  Deformation and try to fit as close model ',
     buttonLabel: 'Learn More',
     imgStart: true,

@@ -9,7 +9,8 @@ import {
     HeroH1,
     HeroP, 
     HeroBtnWrapper, 
-    PhoneRing
+    PhoneRing,
+    HeroH5
     // ArrowForward, 
     // ArrowRight
 } from './HeroElements'
@@ -29,7 +30,7 @@ const HeroSection = () => {
             <HeroContent>
                 <HeroH1> Make Real World Simulation with edata simulation </HeroH1>
                 <HeroP> 
-                    You can contact us at below number & get consultation with renowned experts in Mechanical filed. 
+                    You can contact us at below number & get consultation with renowned experts in Mechanical filed.
                 </HeroP>
                 <HeroBtnWrapper>
                     <Button 
@@ -46,6 +47,9 @@ const HeroSection = () => {
                         +91 9711421875 {hover ? '' : <PhoneRing />}
                     </Button>
                 </HeroBtnWrapper>
+                <HeroH5>
+                    Address No. 804, Royal Block, Supertech Estate, Vaishaili, Sector 09, Ghaziabad, UP - 201019 
+                </HeroH5>
             </HeroContent>
         </HeroContainer>
     )

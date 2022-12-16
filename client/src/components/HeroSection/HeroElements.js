@@ -8,6 +8,17 @@ import { FiPhoneCall } from 'react-icons/fi'
 //     font-size: 20px;
 // `
 
+export const HeroH5 = styled.h5`
+color: #fff;
+text-align: center;
+@media screen and (max-width: 760px) {
+    font-size: 40px;
+}
+@media screen and (max-width: 480px) {
+    font-size: 32px;
+}
+`
+
 export const PhoneRing = styled(FiPhoneCall)`
     margin-left: 8px;
     font-size: 20px;
