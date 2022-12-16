@@ -1,4 +1,4 @@
-export default (services = [], action) => {
+var services = (services = [], action) => {
     switch(action.type) {
         case 'CREATE':
             return [...services, action.payload];
@@ -10,3 +10,5 @@ export default (services = [], action) => {
             return services; 
     }
 }
+
+export default services;
