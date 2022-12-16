@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // import logo from './logo.svg';
 import './ignore/App.css';
-import { getAllService } from './actions/services' 
-import Services from './components/Services';
-import Form from './components/Form';
+import { getAllService } from './actions/services'; 
+// import OurServices from './components/OurServices';
+// import Form from './components/Form';
+import Home from './pages';
+import ContactUsPage from './pages/contactus';
+// import ServiceInfo from './components/ServiceInfo';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,10 +19,13 @@ function App() {
   }, [dispatch])
 
   return (
-    <div className='container'>
-      <Services />
-      <Form />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} exact />
+        <Route path='/contactus' element={<ContactUsPage />} exact/>
+        {/* <Route path='/service-info' element={<ServiceInfo />} /> */}
+      </Routes>
+    </Router>
     /*
     <div className="App">
       <header className="App-header">

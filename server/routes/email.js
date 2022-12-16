@@ -1,5 +1,5 @@
 const express = require('express')
-const {sendEmail} = require('../controllers/emailController')  // controller fns
+const { sendEmail } = require('../controllers/emailController')  // controller fns
 
 const emailRouter = express.Router()
 
